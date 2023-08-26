@@ -7,5 +7,5 @@ class AccountRepository:
     def save(self, account: Account) -> Account:
         return NotImplementedError()
 
-    def get_by_key(self, key: uuid.UUID) -> Account:
+    def get_by_primary_email(self, primary_email: str) -> Account:
         return NotImplementedError()
