@@ -4,6 +4,7 @@ from ..entity.account import Account
 from ..usecase.account_usecase import AccountUseCase
 from ..repository.account_repository import AccountRepository
 from ..exception.already_sign_up_primary_email_exception import AlreadySignUpPrimaryEmailException
+from ..exception.illegal_password_exception import IllegalPasswordException
 
 
 class AccountProcessor(AccountUseCase):
@@ -36,4 +37,6 @@ class AccountProcessor(AccountUseCase):
             password: str
     ) -> Account:
         account = self._repository.get_by_primary_email(primary_email)
+        if account.password != password:
+            raise IllegalPasswordException()
         return account
