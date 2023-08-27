@@ -9,3 +9,6 @@ class AccountRepository:
 
     def get_by_primary_email(self, primary_email: str) -> Account:
         raise NotImplementedError()
+
+    def exists_by_primary_email(self, primary_email: str) -> bool:
+        raise NotImplementedError()
