@@ -7,6 +7,7 @@ from domain.account.main.service.account_processor import AccountProcessor
 from domain.account.main.repository.account_repository import AccountRepository
 from domain.account.main.exception.already_sign_up_primary_email_exception import AlreadySignUpPrimaryEmailException
 from domain.account.main.exception.illegal_password_exception import IllegalPasswordException
+from domain.account.main.exception.does_not_exists_account_exception import DoesNotExistsAccountException
 
 from fake.fake_account_repository import FakeAccountRepository
 
@@ -79,4 +80,19 @@ class AccountProcessorTest(unittest.TestCase):
         self.assertEqual(
             error.exception.__class__,
             IllegalPasswordException
+        )
+
+    def test_가입한_적_없는_이메일로_로그인_할_수_없다(self):
+        # Arrange
+        primary_email = "bhw9102@gmail.com"
+        password = "!Q@W#E$R"
+
+        # Action
+        with self.assertRaises(DoesNotExistsAccountException) as error:
+            self.account_processor.sign_in(primary_email, password)
+
+        # Assertion
+        self.assertEqual(
+            error.exception.__class__,
+            DoesNotExistsAccountException
         )
