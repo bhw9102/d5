@@ -25,7 +25,3 @@ class AccountTest(unittest.TestCase):
         self.assertEqual(result.primary_email, primary_email)
         self.assertEqual(result.password, password)
         self.assertEqual(result.display_name, display_name)
-
-
-if __name__ == '__main__':
-    unittest.main()
