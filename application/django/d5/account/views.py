@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from .forms import AccountForm
+from .forms import SignInForm
 
 
 def index(request):
@@ -20,5 +20,11 @@ def empty(request):
 
 def sign_in(request):
     if request.method == "GET":
-        account_form = AccountForm()
-        return render(request, 'sign-in.html', dict(form=account_form))
+        sign_in_form = SignInForm()
+        return render(request, 'sign-in.html', dict(form=sign_in_form))
+    sign_in_form = SignInForm(request)
+    if not sign_in_form.is_valid():
+        return render(request, 'sign-in.html', dict(form=sign_in_form))
+    request.session['user'] = ''
+    return redirect('index')
+
