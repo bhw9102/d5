@@ -8,5 +8,6 @@ create table account
             unique,
     primary_email integer,
     password      integer,
-    display_name  integer
+    display_name  integer,
+    last_login    timestamp
 );
