@@ -1,0 +1,2 @@
+class AlreadySignUpPrimaryEmailException(Exception):
+    pass
