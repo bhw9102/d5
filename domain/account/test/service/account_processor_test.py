@@ -45,3 +45,16 @@ class AccountProcessorTest(unittest.TestCase):
             error.exception.__class__,
             AlreadySignUpPrimaryEmailException
         )
+
+    def test_이메일과_비밀번호를_입력해서_가입된_계정으로_로그인_할_수_있다(self):
+        # Arrange
+        primary_email = "bhw9102@gmail.com"
+        password = "!Q@W#E$R"
+        display_name = "배현우"
+        self.account_processor.sign_up(primary_email, password, display_name)
+
+        result = self.account_processor.sign_in(primary_email, password)
+
+        self.assertEqual(result.primary_email, primary_email)
+        self.assertEqual(result.password, password)
+        self.assertEqual(result.display_name, display_name)
