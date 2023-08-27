@@ -37,8 +37,11 @@ class AccountProcessorTest(unittest.TestCase):
         display_name = "배현우"
         self.account_processor.sign_up(primary_email, password, display_name)
 
-        # Action & Assertion
-        self.assertRaises(
-            AlreadySignUpPrimaryEmailException,
+        with self.assertRaises(AlreadySignUpPrimaryEmailException) as error:
             self.account_processor.sign_up(primary_email, password, display_name)
+
+        # Action & Assertion
+        self.assertEqual(
+            error.exception.__class__,
+            AlreadySignUpPrimaryEmailException
         )

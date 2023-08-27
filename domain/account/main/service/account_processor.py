@@ -3,6 +3,7 @@ import uuid
 from ..entity.account import Account
 from ..usecase.account_usecase import AccountUseCase
 from ..repository.account_repository import AccountRepository
+from ..exception.already_sign_up_primary_email_exception import AlreadySignUpPrimaryEmailException
 
 
 class AccountProcessor(AccountUseCase):
@@ -18,6 +19,8 @@ class AccountProcessor(AccountUseCase):
             password: str,
             display_name: str
     ) -> Account:
+        if self._repository.exists_by_primary_email(primary_email):
+            raise AlreadySignUpPrimaryEmailException()
         account = Account(
             uuid.uuid4(),
             primary_email,

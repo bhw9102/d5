@@ -15,3 +15,9 @@ class FakeAccountRepository(AccountRepository):
     def get_by_primary_email(self, primary_email: str) -> Account:
         return self._email_map[primary_email]
 
+    def exists_by_primary_email(self, primary_email: str) -> bool:
+        try:
+            return bool(self._email_map[primary_email])
+        except KeyError:
+            return False
+
