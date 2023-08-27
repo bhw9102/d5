@@ -1,11 +1,6 @@
 import os
 import sys
 
-current_file_path = os.path.abspath(__file__)
-package_path = current_file_path.split("/d5/domain")[0]
-sys.path.insert(0, f'{package_path}/d5/domain/account/main')
-
-
 import unittest
 
 from entity.account import Account
