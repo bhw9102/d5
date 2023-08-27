@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+19yi$(hc$k6($&frl!2kyv8b5iy$359m*iu7mx+@b)n-+cayk
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'todo.develove.kr'
+    '127.0.0.1'
 ]
 
 
@@ -105,6 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = "account.Account"
 
 
 # Internationalization
