@@ -1,0 +1,2 @@
+class IllegalPasswordException(Exception):
+    pass
