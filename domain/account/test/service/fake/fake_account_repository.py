@@ -1,5 +1,6 @@
 from domain.account.main.entity.account import Account
 from domain.account.main.repository.account_repository import AccountRepository
+from domain.account.main.exception.does_not_exists_account_exception import DoesNotExistsAccountException
 
 
 class FakeAccountRepository(AccountRepository):
@@ -13,7 +14,10 @@ class FakeAccountRepository(AccountRepository):
         return account
 
     def get_by_primary_email(self, primary_email: str) -> Account:
-        return self._email_map[primary_email]
+        try:
+            return self._email_map[primary_email]
+        except KeyError:
+            raise DoesNotExistsAccountException()
 
     def exists_by_primary_email(self, primary_email: str) -> bool:
         try:
