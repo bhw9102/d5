@@ -35,4 +35,5 @@ class AccountProcessor(AccountUseCase):
             primary_email: str,
             password: str
     ) -> Account:
-        pass
+        account = self._repository.get_by_primary_email(primary_email)
+        return account
