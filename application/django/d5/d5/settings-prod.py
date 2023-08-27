@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+19yi$(hc$k6($&frl!2kyv8b5iy$359m*iu7mx+@b)n-+cayk
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '127.0.0.1'
+    'todo.develove.kr'
 ]
 
 
