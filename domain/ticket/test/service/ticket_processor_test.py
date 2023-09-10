@@ -49,7 +49,6 @@ class TicketProcessorTest(unittest.TestCase):
 
     def test_없는_티켓키로_티켓을_가져올_수_없다(self):
         # Arrange
-
         ticket_key = uuid.uuid4()
 
         # Action
@@ -61,6 +60,30 @@ class TicketProcessorTest(unittest.TestCase):
             error.exception.__class__,
             DoesNotExistsTicketException
         )
+
+    def test_사용자가_작성한_티켓을_모두_가져올_수_있다(self):
+        # Arrange
+        account_key = uuid.uuid4()
+        subject1 = "티켓 작성 테스트 1"
+        command1 = TicketUseCaseCreateCommand(
+            account_key=account_key,
+            subject=subject1
+        )
+        self.ticket_processor.create(command=command1)
+        subject2 = "티켓 작성 테스트 2"
+        command2 = TicketUseCaseCreateCommand(
+            account_key=account_key,
+            subject=subject2
+        )
+        self.ticket_processor.create(command=command2)
+
+        # Action
+        result = self.ticket_processor.find_all_by_account_key(account_key=account_key)
+        # Assertion
+        self.assertEqual(result.count, 2)
+        for ticket in result:
+            self.assertEqual(ticket.account_key, account_key)
+        pass
 
     def test_(self):
         # Arrange
