@@ -83,7 +83,6 @@ class TicketProcessorTest(unittest.TestCase):
         self.assertEqual(len(result), 2)
         for ticket in result:
             self.assertEqual(ticket.account_key, account_key)
-        pass
 
     def test_(self):
         # Arrange
