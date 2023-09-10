@@ -1,14 +1,21 @@
 import uuid
 
+from abc import ABCMeta
+from abc import abstractmethod
 from typing import List
 
-from entity.ticket import Ticket
+from ..entity.ticket import Ticket
 
 
-class TicketRepository:
-	def save(ticket: Ticket) -> Ticket:
+class TicketRepository(metaclass=ABCMeta):
+	@abstractmethod
+	def save(self, ticket: Ticket) -> Ticket:
 		raise NotImplementedError
-	def find_all_by_account_key(account_key: uuid.UUID) -> List[Ticket]:
+
+	@abstractmethod
+	def find_all_by_account_key(self, account_key: uuid.UUID) -> List[Ticket]:
 		raise NotImplementedError
-	def get_by_key(key: uuid.UUID) -> Ticket:
+
+	@abstractmethod
+	def get_by_key(self, key: uuid.UUID) -> Ticket:
 		raise NotImplementedError
