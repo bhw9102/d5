@@ -26,7 +26,12 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'todo.develove.kr'
+    'todo.develove.kr',
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://todo.develove.kr',
 ]
 
 
