@@ -1,0 +1,7 @@
+<a href="/ticket/create">
+  <button>create</button>
+</a>
+
+{% for ticket in tickets %}
+  <p>{{ ticket.subject }}</p>
+{% endfor %}

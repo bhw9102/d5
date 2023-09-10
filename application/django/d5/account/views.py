@@ -14,7 +14,7 @@ def index(request):
     if request.method != "GET":
         raise Exception()
     if request.user.is_authenticated:
-        return redirect('empty')
+        return redirect('tickets')
     return redirect('sign_in')
 
 

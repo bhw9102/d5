@@ -20,5 +20,6 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('', include('account.urls')),
+    path('ticket/', include('ticket.urls'), name='ticket-app'),
     path('admin/', admin.site.urls),
 ]
