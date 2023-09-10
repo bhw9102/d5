@@ -19,4 +19,9 @@ class TicketProcessor(TicketUseCase):
 		pass
 
 	def create(self, command: TicketUseCaseCreateCommand) -> Ticket:
-		pass
+		ticket = Ticket(
+			key=uuid.uuid4(),
+			account_key=command.account_key,
+			subject=command.subject
+		)
+		return self.repository.save(ticket=ticket)
