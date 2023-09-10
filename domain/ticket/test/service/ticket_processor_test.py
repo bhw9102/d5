@@ -3,6 +3,7 @@ import uuid
 
 from .. import TicketProcessor
 from .. import TicketUseCaseCreateCommand
+from .. import DoesNotExistsTicketException
 from .fake.fake_ticket_repository import FakeTicketRepository
 
 
@@ -45,6 +46,21 @@ class TicketProcessorTest(unittest.TestCase):
         self.assertEqual(result.key, ticket.key)
         self.assertEqual(result.account_key, ticket.account_key)
         self.assertEqual(result.subject, ticket.subject)
+
+    def test_없는_티켓키로_티켓을_가져올_수_없다(self):
+        # Arrange
+
+        ticket_key = uuid.uuid4()
+
+        # Action
+        with self.assertRaises(DoesNotExistsTicketException) as error:
+            self.ticket_processor.get_by_key(key=ticket_key)
+
+        # Assertion
+        self.assertEqual(
+            error.exception.__class__,
+            DoesNotExistsTicketException
+        )
 
     def test_(self):
         # Arrange
