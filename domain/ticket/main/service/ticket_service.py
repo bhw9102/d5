@@ -19,7 +19,7 @@ class TicketProcessor(TicketUseCase):
 		return self._repository.find_all_by_account_key(account_key=account_key)
 
 	def create(self, command: TicketUseCaseCreateCommand) -> Ticket:
-		ticket = Ticket(
+		ticket = Ticket.create(
 			key=uuid.uuid4(),
 			account_key=command.account_key,
 			subject=command.subject
