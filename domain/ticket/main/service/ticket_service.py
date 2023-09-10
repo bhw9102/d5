@@ -13,7 +13,7 @@ class TicketProcessor(TicketUseCase):
 		self.repository = repository
 
 	def get_by_key(self, key: uuid.UUID) -> Ticket:
-		pass
+		return self.repository.get_by_key(key=key)
 
 	def find_all_by_account_key(self, account_key: uuid.UUID) -> List[Ticket]:
 		pass
