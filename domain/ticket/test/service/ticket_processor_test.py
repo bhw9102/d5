@@ -80,7 +80,7 @@ class TicketProcessorTest(unittest.TestCase):
         # Action
         result = self.ticket_processor.find_all_by_account_key(account_key=account_key)
         # Assertion
-        self.assertEqual(result.count, 2)
+        self.assertEqual(len(result), 2)
         for ticket in result:
             self.assertEqual(ticket.account_key, account_key)
         pass

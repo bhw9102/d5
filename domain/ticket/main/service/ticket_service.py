@@ -16,7 +16,7 @@ class TicketProcessor(TicketUseCase):
 		return self.repository.get_by_key(key=key)
 
 	def find_all_by_account_key(self, account_key: uuid.UUID) -> List[Ticket]:
-		pass
+		return self.repository.find_all_by_account_key(account_key=account_key)
 
 	def create(self, command: TicketUseCaseCreateCommand) -> Ticket:
 		ticket = Ticket(
