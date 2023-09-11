@@ -1,5 +1,10 @@
 asgiref==3.7.2
+dependency-injector==4.41.0
 Django==4.2.4
 gunicorn==21.2.0
 packaging==23.1
+psycopg2==2.9.7
+psycopg2-binary==2.9.7
+six==1.16.0
 sqlparse==0.4.4
+typing_extensions==4.7.1
