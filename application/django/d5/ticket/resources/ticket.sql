@@ -1,6 +1,6 @@
 create table ticket_ticket
 (
-  id  integer not null
+  id  serial
     constraint ticket_id
     primary key,
   key uuid not null
