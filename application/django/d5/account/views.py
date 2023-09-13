@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import logout
 
 from .forms import SignInForm
 
@@ -45,4 +46,11 @@ def sign_in(request):
         return render(request, 'sign-in.html', dict(form=sign_in_form))
     login(request, user)
     return redirect('index')
+
+
+def sign_out(request):
+    if request.method != 'POST':
+        raise Exception()
+    logout(request)
+    return redirect('sign_in')
 

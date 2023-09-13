@@ -3,3 +3,5 @@
   {{ form }}
   <input type="submit" value="작성">
 </form>
+
+<form action="/sign-out" method="post">{% csrf_token %}<input type="submit" value="로그아웃"></form>

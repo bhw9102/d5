@@ -1,6 +1,7 @@
 <a href="/ticket/create">
   <button>create</button>
 </a>
+<form action="/sign-out" method="post">{% csrf_token %}<input type="submit" value="로그아웃"></form>
 
 {% for ticket in tickets %}
   <p>{{ ticket.subject }}</p>
