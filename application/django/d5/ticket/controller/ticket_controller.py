@@ -32,7 +32,9 @@ class TicketCreateController(View):
         form = CreateTicketForm(request.POST)
         user = request.user
         if not user:
-            raise Exception()
+            return redirect('index')
+        if not request.user.is_authenticated:
+            return redirect('index')
         if not form.is_valid():
             raise Exception()
         self._ticket_use_case.create(
@@ -53,6 +55,6 @@ def get_tickets(
         raise Exception()
     user = request.user
     if not user.is_authenticated:
-        raise Exception()
+        return redirect('index')
     tickets = ticket_use_case.find_all_by_account_key(user.key)
     return render(request, 'tickets.html', dict(tickets=tickets))
