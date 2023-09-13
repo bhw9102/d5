@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
@@ -35,7 +37,7 @@ def sign_in(request):
     password = sign_in_form.cleaned_data.get('password')
     user = User.objects.filter(email=username).first()
     if not user:
-        user = User.objects.create_user(username=username, email=username, password=password)
+        user = User.objects.create_user(username=username, email=username, password=password, key=uuid.uuid4())
         login(request, user)
         return redirect('index')
     user = authenticate(username=username, password=password)
