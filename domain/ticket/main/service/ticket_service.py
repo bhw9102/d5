@@ -25,3 +25,6 @@ class TicketProcessor(TicketUseCase):
 			subject=command.subject
 		)
 		return self._repository.save(ticket=ticket)
+
+	def done(self):
+		pass
