@@ -22,6 +22,7 @@ class Ticket:
         self.status = status
         self.subject = subject
 
+    # companion object
     @classmethod
     def create(
             cls: Type[T],
@@ -35,3 +36,7 @@ class Ticket:
             status=TicketStatus.READY,
             subject=subject
         )
+
+    def done(self):
+        pass
+        # self.status = TicketStatus.DONE
