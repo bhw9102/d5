@@ -20,3 +20,7 @@ class TicketUseCase(metaclass=ABCMeta):
 	@abstractmethod
 	def create(self, command: TicketUseCaseCreateCommand) -> Ticket:
 		raise NotImplementedError()
+
+	@abstractmethod
+	def done(self, key: uuid.UUID):
+		raise NotImplementedError()

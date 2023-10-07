@@ -1,6 +1,7 @@
 import unittest
 import uuid
 
+from .. import TicketStatus
 from .. import TicketProcessor
 from .. import TicketUseCaseCreateCommand
 from .. import DoesNotExistsTicketException
@@ -83,6 +84,22 @@ class TicketProcessorTest(unittest.TestCase):
         self.assertEqual(len(result), 2)
         for ticket in result:
             self.assertEqual(ticket.account_key, account_key)
+
+    def test_티켓을_완료할_수_있다(self):
+        # Arrange
+        account_key = uuid.uuid4()
+        subject = "티켓 작성 테스트"
+        command = TicketUseCaseCreateCommand(
+            account_key=account_key,
+            subject=subject
+        )
+        ticket = self.ticket_processor.create(command=command)
+
+        # Action
+        ticket = self.ticket_processor.done(ticket.key)
+
+        # Assertion
+        self.assertEqual(ticket.status, TicketStatus.DONE)
 
     def test_(self):
         # Arrange

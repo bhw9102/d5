@@ -25,3 +25,8 @@ class TicketProcessor(TicketUseCase):
 			subject=command.subject
 		)
 		return self._repository.save(ticket=ticket)
+
+	def done(self, key: uuid.UUID):
+		ticket = self._repository.get_by_key(key=key)
+		ticket.done()
+		return self._repository.save(ticket=ticket)
