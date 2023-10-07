@@ -38,5 +38,4 @@ class Ticket:
         )
 
     def done(self):
-        pass
-        # self.status = TicketStatus.DONE
+        self.status = TicketStatus.DONE
