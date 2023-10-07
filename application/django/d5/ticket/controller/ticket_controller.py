@@ -1,3 +1,4 @@
+import uuid
 
 from domain.ticket.main.usecase.ticket_usecase import TicketUseCase
 from domain.ticket.main.contract.ticket_use_case_create_command import TicketUseCaseCreateCommand
@@ -43,6 +44,22 @@ class TicketCreateController(View):
                 subject=form.cleaned_data.get('subject')
             )
         )
+        return redirect('tickets')
+
+
+class TicketDoneController(View):
+    @inject
+    def __init__(
+            self,
+            ticket_use_case: TicketUseCase = Provide[TicketContainer.ticket_use_case],
+            **kwargs
+    ):
+        self._ticket_use_case: TicketUseCase = ticket_use_case
+        super().__init__(**kwargs)
+
+    def post(self, request, key) -> HttpResponse:
+        key = uuid.UUID(key)
+        self._ticket_use_case.done(key)
         return redirect('tickets')
 
 
