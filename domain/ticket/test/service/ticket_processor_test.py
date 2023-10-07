@@ -96,7 +96,7 @@ class TicketProcessorTest(unittest.TestCase):
         ticket = self.ticket_processor.create(command=command)
 
         # Action
-        ticket = self.ticket_processor.done()
+        ticket = self.ticket_processor.done(ticket.key)
 
         # Assertion
         self.assertEqual(ticket.status, TicketStatus.DONE)
