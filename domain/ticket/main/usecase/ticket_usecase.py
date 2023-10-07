@@ -22,5 +22,5 @@ class TicketUseCase(metaclass=ABCMeta):
 		raise NotImplementedError()
 
 	@abstractmethod
-	def done(self):
+	def done(self, key: uuid.UUID):
 		raise NotImplementedError()
