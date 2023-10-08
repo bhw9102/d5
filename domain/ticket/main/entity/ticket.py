@@ -20,7 +20,7 @@ class Ticket:
             subject: str,
             created_at: datetime.datetime,
             updated_at: datetime.datetime,
-            done_at: Optional[datetime.datetime, None]
+            done_at: Optional[datetime.datetime]
     ):
         self.key = key
         self.account_key = account_key

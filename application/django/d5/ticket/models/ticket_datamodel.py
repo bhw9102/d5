@@ -17,6 +17,9 @@ class TicketDataModel(models.Model):
     account_key = models.UUIDField()
     status = models.CharField()
     subject = models.TextField()
+    created_at = models.DateTimeField(null=False)
+    updated_at = models.DateTimeField(null=False)
+    done_at = models.DateTimeField(null=True)
 
     class Meta:
         db_table = 'ticket_ticket'
@@ -26,7 +29,10 @@ class TicketDataModel(models.Model):
             key=self.key,
             account_key=self.account_key,
             status=TicketStatus(self.status),
-            subject=self.subject
+            subject=self.subject,
+            created_at=self.created_at,
+            updated_at=self.updated_at,
+            done_at=self.done_at
         )
 
     @classmethod
@@ -38,5 +44,8 @@ class TicketDataModel(models.Model):
             key=ticket.key,
             account_key=ticket.account_key,
             status=ticket.status.value,
-            subject=ticket.subject
+            subject=ticket.subject,
+            created_at=ticket.created_at,
+            updated_at=ticket.updated_at,
+            done_at=ticket.done_at
         )
