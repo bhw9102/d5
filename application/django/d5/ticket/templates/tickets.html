@@ -4,5 +4,7 @@
 <form action="/sign-out" method="post">{% csrf_token %}<input type="submit" value="로그아웃"></form>
 
 {% for ticket in tickets %}
-  <p>{{ ticket.subject }}</p>
+  <div>-----------------------</div>
+  <p>{{ ticket.subject }}</p><p>{{ ticket.status.value }}</p>
+  <form action="/ticket/{{ ticket.key }}/done" method="post">{% csrf_token %}<input type="submit" value="완료"></form>
 {% endfor %}

@@ -13,7 +13,7 @@ T = TypeVar('T', bound='TicketDataModel')
 
 
 class TicketDataModel(models.Model):
-    key = models.UUIDField()
+    key = models.UUIDField(primary_key=True)
     account_key = models.UUIDField()
     status = models.CharField()
     subject = models.TextField()
