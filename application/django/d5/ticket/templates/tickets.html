@@ -5,7 +5,6 @@
 
 {% for ticket in tickets %}
   <div>-----------------------</div>
-  <p>{{ ticket.key }}</p>
   <p>{{ ticket.subject }}</p><p>{{ ticket.status.value }}</p>
   <form action="/ticket/{{ ticket.key }}/done" method="post">{% csrf_token %}<input type="submit" value="완료"></form>
 {% endfor %}
