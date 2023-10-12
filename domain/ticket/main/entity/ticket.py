@@ -17,6 +17,7 @@ class Ticket:
             self,
             key: uuid.UUID,
             creator_key: uuid.UUID,
+            assignee_key: uuid.UUID,
             status: TicketStatus,
             subject: str,
             created_at: datetime.datetime,
@@ -25,6 +26,7 @@ class Ticket:
     ):
         self.key = key
         self.creator_key = creator_key
+        self.assignee_key = assignee_key
         self.status = status
         self.subject = subject
         self.created_at = created_at
@@ -43,6 +45,7 @@ class Ticket:
         return cls(
             key=key,
             creator_key=creator_key,
+            assignee_key=None,
             status=TicketStatus.READY,
             subject=subject,
             created_at=now,
