@@ -16,7 +16,7 @@ class Ticket:
     def __init__(
             self,
             key: uuid.UUID,
-            account_key: uuid.UUID,
+            creator_key: uuid.UUID,
             status: TicketStatus,
             subject: str,
             created_at: datetime.datetime,
@@ -24,7 +24,7 @@ class Ticket:
             done_at: Optional[datetime.datetime]
     ):
         self.key = key
-        self.account_key = account_key
+        self.creator_key = creator_key
         self.status = status
         self.subject = subject
         self.created_at = created_at
@@ -36,13 +36,13 @@ class Ticket:
     def create(
             cls: Type[T],
             key: uuid.UUID,
-            account_key: uuid.UUID,
+            creator_key: uuid.UUID,
             subject: str
     ) -> T:
         now = datetime.datetime.now(ZoneInfo('UTC'))
         return cls(
             key=key,
-            account_key=account_key,
+            creator_key=creator_key,
             status=TicketStatus.READY,
             subject=subject,
             created_at=now,

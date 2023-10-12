@@ -19,7 +19,7 @@ class TicketProcessorTest(unittest.TestCase):
         account_key = uuid.uuid4()
         subject = "티켓 작성 테스트"
         command = TicketUseCaseCreateCommand(
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject
         )
 
@@ -27,7 +27,7 @@ class TicketProcessorTest(unittest.TestCase):
         result = self.ticket_processor.create(command=command)
 
         # Assertion
-        self.assertEqual(result.account_key, account_key)
+        self.assertEqual(result.creator_key, account_key)
         self.assertEqual(result.subject, subject)
 
     def test_티켓키로_티켓을_가져올_수_있다(self):
@@ -35,7 +35,7 @@ class TicketProcessorTest(unittest.TestCase):
         account_key = uuid.uuid4()
         subject = "티켓 작성 테스트"
         command = TicketUseCaseCreateCommand(
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject
         )
         ticket = self.ticket_processor.create(command=command)
@@ -45,7 +45,7 @@ class TicketProcessorTest(unittest.TestCase):
 
         # Assertion
         self.assertEqual(result.key, ticket.key)
-        self.assertEqual(result.account_key, ticket.account_key)
+        self.assertEqual(result.creator_key, ticket.creator_key)
         self.assertEqual(result.subject, ticket.subject)
 
     def test_없는_티켓키로_티켓을_가져올_수_없다(self):
@@ -67,13 +67,13 @@ class TicketProcessorTest(unittest.TestCase):
         account_key = uuid.uuid4()
         subject1 = "티켓 작성 테스트 1"
         command1 = TicketUseCaseCreateCommand(
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject1
         )
         self.ticket_processor.create(command=command1)
         subject2 = "티켓 작성 테스트 2"
         command2 = TicketUseCaseCreateCommand(
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject2
         )
         self.ticket_processor.create(command=command2)
@@ -83,14 +83,14 @@ class TicketProcessorTest(unittest.TestCase):
         # Assertion
         self.assertEqual(len(result), 2)
         for ticket in result:
-            self.assertEqual(ticket.account_key, account_key)
+            self.assertEqual(ticket.creator_key, account_key)
 
     def test_티켓을_완료할_수_있다(self):
         # Arrange
         account_key = uuid.uuid4()
         subject = "티켓 작성 테스트"
         command = TicketUseCaseCreateCommand(
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject
         )
         ticket = self.ticket_processor.create(command=command)

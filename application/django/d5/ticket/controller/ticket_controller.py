@@ -40,7 +40,7 @@ class TicketCreateController(View):
             raise Exception()
         self._ticket_use_case.create(
             command=TicketUseCaseCreateCommand(
-                account_key=user.key,
+                creator_key=user.key,
                 subject=form.cleaned_data.get('subject')
             )
         )

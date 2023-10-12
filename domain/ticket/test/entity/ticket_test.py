@@ -4,6 +4,7 @@ import uuid
 from .. import Ticket
 from .. import TicketStatus
 
+
 class TicketTest(unittest.TestCase):
     def test_티켓을_처음_생성할_수_있다(self):
         # Arrange
@@ -14,13 +15,13 @@ class TicketTest(unittest.TestCase):
         # Action
         ticket = Ticket.create(
             key=ticket_key,
-            account_key=account_key,
+            creator_key=account_key,
             subject=subject
         )
 
         # Assertion
         self.assertEqual(ticket.key, ticket_key)
-        self.assertEqual(ticket.account_key, account_key)
+        self.assertEqual(ticket.creator_key, account_key)
         self.assertEqual(ticket.subject, subject)
         self.assertEqual(ticket.status, TicketStatus.READY)
 
@@ -28,7 +29,7 @@ class TicketTest(unittest.TestCase):
         # Arrange
         ticket = Ticket.create(
             key=uuid.uuid4(),
-            account_key=uuid.uuid4(),
+            creator_key=uuid.uuid4(),
             subject="티켓을 완료시킵니다."
         )
         # Action

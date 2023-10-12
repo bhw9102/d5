@@ -15,7 +15,7 @@ class FakeTicketRepository(TicketRepository):
         return self._map[ticket.key]
 
     def find_all_by_account_key(self, account_key: uuid.UUID) -> List[Ticket]:
-        return [item for item in self._map.values() if item.account_key == account_key]
+        return [item for item in self._map.values() if item.creator_key == account_key]
 
     def get_by_key(self, key: uuid.UUID) -> Ticket:
         try:
