@@ -7,6 +7,7 @@ from domain.ticket.main.entity.ticket import Ticket
 from domain.ticket.main.valueobject.ticket_status import TicketStatus
 
 from django.db import models
+from django.utils import timezone
 
 
 T = TypeVar('T', bound='TicketDataModel')
@@ -30,8 +31,8 @@ class TicketDataModel(models.Model):
             account_key=self.account_key,
             status=TicketStatus(self.status),
             subject=self.subject,
-            created_at=self.created_at,
-            updated_at=self.updated_at,
+            created_at=timezone.make_aware(self.created_at),
+            updated_at=timezone.make_aware(self.updated_at),
             done_at=self.done_at
         )
 
@@ -45,7 +46,7 @@ class TicketDataModel(models.Model):
             account_key=ticket.account_key,
             status=ticket.status.value,
             subject=ticket.subject,
-            created_at=ticket.created_at,
-            updated_at=ticket.updated_at,
+            created_at=timezone.make_aware(ticket.created_at),
+            updated_at=timezone.make_aware(ticket.updated_at),
             done_at=ticket.done_at
         )
