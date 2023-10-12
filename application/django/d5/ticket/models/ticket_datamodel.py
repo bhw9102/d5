@@ -33,7 +33,7 @@ class TicketDataModel(models.Model):
             subject=self.subject,
             created_at=timezone.make_aware(self.created_at),
             updated_at=timezone.make_aware(self.updated_at),
-            done_at=self.done_at
+            done_at=timezone.make_aware(self.done_at) if self.done_at else None
         )
 
     @classmethod
@@ -46,7 +46,7 @@ class TicketDataModel(models.Model):
             account_key=ticket.account_key,
             status=ticket.status.value,
             subject=ticket.subject,
-            created_at=timezone.make_aware(ticket.created_at),
-            updated_at=timezone.make_aware(ticket.updated_at),
+            created_at=ticket.created_at,
+            updated_at=ticket.updated_at,
             done_at=ticket.done_at
         )

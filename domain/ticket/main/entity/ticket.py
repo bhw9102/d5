@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+from zoneinfo import ZoneInfo
 from typing import Type
 from typing import TypeVar
 from typing import Optional
@@ -38,7 +39,7 @@ class Ticket:
             account_key: uuid.UUID,
             subject: str
     ) -> T:
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(ZoneInfo('UTC'))
         return cls(
             key=key,
             account_key=account_key,
@@ -50,7 +51,7 @@ class Ticket:
         )
 
     def done(self):
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(ZoneInfo('UTC'))
         self.status = TicketStatus.DONE
         self.done_at = now
         self.updated_at = now
