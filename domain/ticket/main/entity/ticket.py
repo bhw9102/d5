@@ -45,7 +45,7 @@ class Ticket:
         return cls(
             key=key,
             creator_key=creator_key,
-            assignee_key=None,
+            assignee_key=creator_key,
             status=TicketStatus.READY,
             subject=subject,
             created_at=now,
