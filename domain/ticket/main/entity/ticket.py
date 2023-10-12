@@ -17,7 +17,7 @@ class Ticket:
             self,
             key: uuid.UUID,
             creator_key: uuid.UUID,
-            assignee_key: uuid.UUID,
+            assignee_key: Optional[uuid.UUID],
             status: TicketStatus,
             subject: str,
             created_at: datetime.datetime,
@@ -58,3 +58,7 @@ class Ticket:
         self.status = TicketStatus.DONE
         self.done_at = now
         self.updated_at = now
+
+    def assign(self, assignee_key: uuid.UUID):
+        pass
+

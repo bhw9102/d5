@@ -37,7 +37,7 @@ class TicketTest(unittest.TestCase):
         # Assertion
         self.assertEqual(ticket.status, TicketStatus.DONE)
 
-    def test_티켓을_처음_생성하면_작성자가_작업자가_됩니다(self):
+    def test_티켓을_처음_생성하면_작성자가_작업자가_된다(self):
         # Arrange
         ticket_key = uuid.uuid4()
         account_key = uuid.uuid4()
@@ -54,3 +54,21 @@ class TicketTest(unittest.TestCase):
         self.assertEqual(ticket.key, ticket_key)
         self.assertEqual(ticket.creator_key, account_key)
         self.assertEqual(ticket.assignee_key, account_key)
+
+    def test_티켓의_작업자를_지정할_수_있다(self):
+        # Arrange
+        ticket_key = uuid.uuid4()
+        creator_key = uuid.uuid4()
+        assignee_key = uuid.uuid4()
+        subject = "티켓을 생성합니다."
+        ticket = Ticket.create(
+            key=ticket_key,
+            creator_key=creator_key,
+            subject=subject
+        )
+
+        # Action
+        ticket.assign(assignee_key=assignee_key)
+
+        # Assertion
+        self.assertEqual(ticket.assignee_key, assignee_key)
