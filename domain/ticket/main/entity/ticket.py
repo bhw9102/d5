@@ -60,5 +60,6 @@ class Ticket:
         self.updated_at = now
 
     def assign(self, assignee_key: uuid.UUID):
-        pass
+        self.assignee_key = assignee_key
+        self.updated_at = datetime.datetime.now(ZoneInfo('UTC'))
 
