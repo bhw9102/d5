@@ -7,7 +7,6 @@ from domain.ticket.main.entity.ticket import Ticket
 from domain.ticket.main.valueobject.ticket_status import TicketStatus
 
 from django.db import models
-from django.utils import timezone
 
 from common.datetime import to_aware
 
