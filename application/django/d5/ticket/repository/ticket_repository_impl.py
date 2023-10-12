@@ -15,7 +15,7 @@ class TicketRepositoryImpl(TicketRepository):
         return ticket_data_model.to_entity()
 
     def find_all_by_account_key(self, account_key: uuid.UUID) -> List[Ticket]:
-        return [item.to_entity() for item in TicketDataModel.objects.filter(account_key=account_key)]
+        return [item.to_entity() for item in TicketDataModel.objects.filter(account_key=account_key).order_by('-created_at')]
 
     def get_by_key(self, key: uuid.UUID) -> Ticket:
         try:
