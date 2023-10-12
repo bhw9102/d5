@@ -26,8 +26,8 @@ class Ticket:
         self.account_key = account_key
         self.status = status
         self.subject = subject
-        self.created_at = created_at,
-        self.updated_at = updated_at,
+        self.created_at = created_at
+        self.updated_at = updated_at
         self.done_at = done_at
 
     # companion object
